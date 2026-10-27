@@ -1,0 +1,835 @@
+# UR — LOREKEEPER & WORLDMAKER
+
+## Corrective Application Build Directive
+
+**Target environment:** Google AI Studio Build
+**Application identity:** Lorekeeper's Observatory
+**Product role:** A dedicated creative worldbuilding and visual-design workbench for *Apocrypha DXD: ForeverWorlds*, within the Ur-Verse.
+
+---
+
+# 01. MISSION
+
+Build a coherent, functional application that serves the Lorekeeper and Worldmaker's actual creative workflow.
+
+This is not a request for a generic dashboard, a lore wiki, a note-taking app, or a chatbot wrapper.
+
+The Lorekeeper's responsibilities include:
+
+- Character lore and original character development.
+- Worldbuilding, cosmology, realms, factions, civilizations, histories, and metaphysical structures.
+- Powerscaling, ability design, power interactions, limitations, counters, and consequences.
+- Creative brainstorming and continuous generation of distinctive ideas.
+- Research and evidence-backed creative development.
+- Visual design for characters, creatures, realms, environments, transformations, abilities, attacks, sequences, and effects.
+- Two-dimensional concept development and three-dimensional visual planning.
+- Image analysis, visual-reference interpretation, composition, aesthetics, silhouettes, materials, lighting, and effects.
+- The verse's distinctive game-like identity, including impactful presentation, readable effects, exaggerated sequences, and memorable visual mechanics.
+- Organizing and documenting the lore produced through this work.
+
+The application must support these activities as connected parts of one creative process.
+
+A character record should be capable of connecting to its abilities, visual references, factions, locations, cosmological relationships, and associated research. A power concept should be capable of connecting to its visual effects, interactions, limitations, and relevant world rules.
+
+Do not reduce this work to filling out isolated forms.
+
+**The application exists to help the Lorekeeper think, create, investigate, design, connect, and preserve its work.**
+
+# 02. NON-NEGOTIABLE ARCHITECTURAL BOUNDARIES
+
+## 2.1 The intelligence and the application
+
+GAISB1, the Lorekeeper, is the creative intelligence responsible for using this environment. The application is its workbench and persistent workspace.
+
+Do not create a second AI persona that pretends to be the Lorekeeper.
+
+Do not create an embedded Gemini chatbot, an independently configurable AI agent, a separate provider-routing system, or an application-owned AI identity unless explicitly required by a later, separate decision.
+
+Do not assume the application can automatically read Google AI Studio conversation history or inherit the Build model's context.
+
+The Build model's implementation capabilities and the running application's capabilities are different things. Implement only what the actual application environment supports.
+
+The Lorekeeper's creative reasoning can take place in its Google AI Studio session. The application should provide useful surfaces for viewing, organizing, editing, connecting, and exporting the resulting work.
+
+If the environment provides a genuine supported way for the same working intelligence to interact with the application's state, use it only when its actual capabilities are established. Do not invent such a mechanism.
+
+## 2.2 The Lorekeeper is not the Ledger
+
+The application may store and organize lore because durable world documentation is part of the Lorekeeper's responsibilities.
+
+However, it must not become a general-purpose archive for chapters, writing drafts, or character-psychology documentation.
+
+Character psychology is assigned to the dedicated Character Psychology model. Chapter prose belongs to the Writer. The Ledger has its own storage role.
+
+The Lorekeeper may document facts about a character's powers, appearance, origins, metaphysical nature, and world relationships. It must not claim ownership of the entire character-psychology workflow.
+
+## 2.3 Creative authority
+
+The application is a workspace, not an autonomous canon arbiter.
+
+It must distinguish:
+
+- **Established:** explicitly confirmed canon.
+- **Proposed:** an idea awaiting acceptance.
+- **Inferred:** a conclusion derived from available evidence.
+- **Unresolved:** an open question, contradiction, or missing decision.
+- **Retired:** an idea deliberately set aside without silently erasing its history.
+
+These are application record states, not restrictions on creative imagination.
+
+The Lorekeeper must remain free to brainstorm boldly. An idea may be imaginative without being canon. The application must preserve that distinction.
+
+Never seed the application with invented Ur-Verse lore and present it as established material.
+
+# 03. PRODUCT IDENTITY AND VISUAL SYSTEM
+
+The interface should feel like an **arcane research observatory combined with a high-end fantasy concept studio**. It should communicate depth, creative freedom, visual sophistication, and technical organization.
+
+Avoid the standard SaaS dashboard aesthetic: rows of identical cards, generic purple gradients, excessive rounded containers, arbitrary analytics, and empty charts that contribute nothing to the work.
+
+## 3.1 Color palette
+
+Use the following named design tokens consistently.
+
+| Token           | Hex       | Purpose                                                    |
+| --------------- | --------- | ---------------------------------------------------------- |
+| Obsidian Void   | `#101117` | Primary application background                             |
+| Midnight Slate  | `#191B25` | Main panels and workspace surfaces                         |
+| Raised Graphite | `#242633` | Elevated panels, hover surfaces, controls                  |
+| Arcane Violet   | `#9A82E8` | Primary interaction and creative-action accent             |
+| Astral Cyan     | `#76D5E0` | Research, references, selected technical details           |
+| Antique Gold    | `#D3B477` | Established canon, important connections, premium emphasis |
+| Parchment       | `#E9E1D2` | Primary text and light document surfaces                   |
+| Muted Silver    | `#A4A6B5` | Secondary text and metadata                                |
+| Signal Coral    | `#F18A82` | Warnings, conflicts, destructive-action emphasis           |
+| Deep Divider    | `#353744` | Borders, separators, structural lines                      |
+
+The palette is an application design decision, not established story canon.
+
+Use color semantically. Do not paint every component with every accent. Purple establishes the creative identity; cyan identifies research and reference-oriented elements; gold marks confirmed canon and important relationships; coral communicates warnings.
+
+Text must remain readable. Decorative glow must never replace sufficient contrast.
+
+## 3.2 Typography
+
+Use a restrained typographic pairing:
+
+- **Display and section headings:** a sophisticated serif such as Cormorant Garamond, where loading it is reliable.
+- **Interface text and controls:** Inter or a comparable highly legible sans-serif.
+- **Technical identifiers, hexadecimal colors, coordinates, record IDs, and schema-like information:** a monospace font.
+
+Use clear hierarchy rather than making everything large or ornate. Body text and long lore documents must remain comfortable to read.
+
+## 3.3 Graphic language
+
+Use restrained visual motifs inspired by celestial charts, arcane diagrams, fine drafting lines, constellations, layered manuscripts, and dimensional geometry.
+
+These motifs should reinforce the workspace's purpose.
+
+Use Lucide icons or an equivalent consistent icon system for controls. Use custom SVG diagrams for meaningful world relationships, power interactions, and visual schematics when appropriate.
+
+Do not use emoji as the primary icon system. Do not place ornamental sigils everywhere simply to make the interface appear magical.
+
+## 3.4 Layout behavior
+
+Design the application as a responsive desktop-first creative workbench that remains usable on smaller screens.
+
+On desktop, the main workspace should have three adaptable regions:
+
+1. **Navigation rail:** primary workspaces and collections.
+2. **Central canvas:** the active document, visual board, map, diagram, or creative surface.
+3. **Context inspector:** selected-record properties, relationships, references, and status.
+
+The context inspector should be collapsible. The central canvas must receive most of the available space.
+
+On smaller screens, convert side regions into drawers or dedicated contextual panels. Do not merely compress the desktop layout until it becomes unusable.
+
+# 04. APPLICATION SHELL
+
+Implement a coherent persistent application shell.
+
+## 4.1 Header
+
+Include:
+
+- Application mark and the name **Lorekeeper's Observatory**.
+- Current workspace and document breadcrumb.
+- Global search.
+- A clear save or synchronization state where applicable.
+- Import/export access.
+- A compact command menu for common actions.
+
+Do not display fake account avatars, fake notifications, fake usage metrics, or fabricated cloud-sync indicators.
+
+## 4.2 Primary navigation
+
+Implement these named workspaces:
+
+1. **Observatory** — creative landing workspace and active projects.
+2. **World Atlas** — realms, locations, civilizations, factions, and cosmology.
+3. **Entities** — characters, creatures, organizations, and other world entities.
+4. **Power Forge** — abilities, power systems, scaling arguments, interactions, and limitations.
+5. **Visual Studio** — image references, character designs, realm concepts, 2D/3D briefs, and effects.
+6. **Idea Constellation** — brainstormed ideas and connections.
+7. **Research Desk** — source records, research notes, claims, and evidence.
+8. **Lore Library** — searchable, structured lore documentation and collections.
+
+These are connected workspaces within one application, not eight disconnected miniature apps.
+
+Use consistent navigation state, selection behavior, and document identity across all of them.
+
+## 4.3 Global commands
+
+Provide useful commands such as:
+
+- Create a new record.
+- Search lore.
+- Open a recent document.
+- Add a relationship.
+- Add a visual reference.
+- Create an ability.
+- Start a research record.
+- Export the current document.
+- Export a selected collection.
+
+Keyboard shortcuts should be documented in the interface where relevant. Do not implement shortcuts that silently conflict with normal text editing.
+
+# 05. OBSERVATORY: CREATIVE HOME
+
+The default workspace should immediately communicate what the Lorekeeper is working on, without becoming an analytics dashboard.
+
+Include:
+
+- A prominent **Continue Working** area for recently opened records.
+- A **Creative Projects** section for grouped work.
+- A **Recent Ideas** stream with their current statuses.
+- A **Research and References** area for recent sources and visual material.
+- A **Connected Work** view showing meaningful links between entities, abilities, locations, and design boards.
+- A clear creation command.
+
+Use real saved data. If the application is empty, show an intentional first-use state with useful creation actions. Never fill the screen with fake recent activity or invented lore to make it appear populated.
+
+The Observatory should make it easy to resume work in one action.
+
+# 06. WORLD ATLAS AND COSMOLOGY
+
+Build a structured worldbuilding environment for locations, realms, planes, dimensions, civilizations, factions, histories, and cosmological relationships.
+
+## 6.1 World records
+
+Each record should support:
+
+- Stable ID.
+- Name and alternate names.
+- Record type.
+- Summary.
+- Detailed description.
+- Parent and child relationships.
+- Related entities and factions.
+- Relevant cosmological rules.
+- Spatial or hierarchical relationships where applicable.
+- Visual references.
+- Source material.
+- Canon status.
+- Tags.
+- Change history.
+
+Only display fields relevant to the record type. Do not force every location to pretend it is a faction or every realm to possess arbitrary numerical statistics.
+
+## 6.2 Atlas canvas
+
+Provide an interactive canvas for exploring relationships between world elements.
+
+Support selecting nodes, opening record details, traversing connections, zooming, panning, and filtering by relationship type.
+
+Possible relationships include:
+
+- Contains.
+- Located within.
+- Connected to.
+- Governed by.
+- Originates from.
+- Associated with.
+- Opposed to.
+- Depends upon.
+- Transcends.
+
+Treat these as available relationship types, not universal cosmological assumptions. Allow additional relationship labels when the project's needs require them.
+
+The canvas must reflect saved records. It must not display invented connections merely to make the diagram look complete.
+
+# 07. ENTITIES AND CHARACTER LORE
+
+Create structured records for characters, creatures, organizations, and other entities.
+
+Support:
+
+- Identity and alternate names.
+- Species or entity type.
+- Origin and affiliations.
+- Relevant lore and history.
+- Abilities and power relationships.
+- Equipment, forms, and transformations where applicable.
+- Realm and faction connections.
+- Visual references and design boards.
+- Related research.
+- Canon status and revision history.
+
+Allow flexible, type-appropriate fields instead of imposing one rigid character template on every kind of entity.
+
+For example, a realm's metaphysical properties and a character's equipment should not be forced into the same form.
+
+The application may document visual appearance and power-related facts. It must not replace the dedicated Character Psychology model's responsibility for behavioral continuity, dialogue, and character psyche.
+
+# 08. POWER FORGE
+
+This is a primary creative workspace, not a decorative list of ability names.
+
+Create connected tools for ability design, power systems, scaling arguments, interactions, limitations, counters, and consequences.
+
+## 8.1 Ability records
+
+Each ability should support relevant fields such as:
+
+- Name and aliases.
+- Core concept.
+- Source or mechanism.
+- Activation conditions.
+- Target and scope.
+- Operational sequence.
+- Observable effects.
+- Costs and limitations.
+- Failure conditions.
+- Counters and interactions.
+- Dependencies and prerequisites.
+- Known demonstrations or supporting evidence.
+- Visual and sensory presentation.
+- Related characters and entities.
+- Canon status.
+
+These fields are an adaptable schema. Do not force unsupported values into every record.
+
+## 8.2 Ability mechanics
+
+The application must support documenting how an ability actually works, rather than recording only a description of its appearance.
+
+Represent the relationship between:
+
+**Source → Activation → Operation → Target → Effect → Cost or limitation → Consequence**
+
+Allow branching, conditional outcomes, multi-stage sequences, interactions, and failure paths.
+
+Provide an editable flow diagram or equivalent structured canvas for complicated mechanics. Each node should connect to the relevant record or explanation.
+
+The diagram is a representation of the documented mechanics. It is not a simulation of the fictional world unless a genuine simulation feature is separately implemented.
+
+## 8.3 Power interactions
+
+Allow the Lorekeeper to document:
+
+- Direct clashes.
+- Ability compatibility and incompatibility.
+- Resistance and bypass conditions.
+- Interference.
+- Conditional advantages.
+- Counters.
+- Environmental dependencies.
+- Escalation and failure scenarios.
+
+Make assumptions and evidence visible. A scaling conclusion must not appear established merely because a field has been filled in.
+
+## 8.4 Powerscaling workspace
+
+Support comparison arguments with explicit premises, evidence, interpretations, counterarguments, and unresolved issues.
+
+Do not invent numerical power scores or impose a universal tiering framework unless the project actually uses one.
+
+When a comparison depends on a disputed premise, preserve that dispute rather than silently selecting a winner.
+
+# 09. VISUAL STUDIO
+
+Visual development is a core responsibility of the Lorekeeper. It must receive a dedicated, substantial workspace rather than being relegated to a thumbnail field in a character form.
+
+## 9.1 Reference gallery
+
+Support adding images through the actual file-upload capabilities available in the application.
+
+For each reference, support:
+
+- Image preview.
+- Title and description.
+- Source or origin when known.
+- Associated character, realm, ability, or project.
+- Visual tags.
+- Notes on what the image contributes.
+- Image-specific observations.
+- Relationship to other references.
+
+Support zooming or opening an image at a larger size. Preserve the original aspect ratio unless the user deliberately changes the presentation.
+
+If a remote image cannot load, show a meaningful fallback rather than a broken image or a false success state.
+
+## 9.2 Image analysis workspace
+
+Provide a dedicated surface for examining visual references.
+
+The Lorekeeper should be able to record observations about:
+
+- Silhouette and proportions.
+- Shape language.
+- Color relationships.
+- Materials and surface properties.
+- Lighting and atmosphere.
+- Composition and camera angle.
+- Clothing, armor, anatomy, and ornament.
+- Effects, particles, trails, and environmental interaction.
+- Distinctive visual features.
+- Elements to preserve, change, combine, or avoid.
+
+These are analytical categories, not a mandatory checklist for every image.
+
+Keep observations attached to the image and its associated project. Distinguish visible evidence from creative interpretation.
+
+Do not claim that the application itself has analyzed an image using a model if the only implemented feature is an image viewer and a text field.
+
+## 9.3 Character design boards
+
+Create a visual board format that combines:
+
+- Main reference image.
+- Alternate angles or design references.
+- Silhouette and proportion studies.
+- Palette swatches.
+- Material references.
+- Clothing and equipment details.
+- Facial and anatomical details.
+- Ability effects and transformations.
+- Written design rationale.
+- Open design decisions.
+
+Support freely arranging and resizing board items where feasible. Save their positions and sizes.
+
+Do not flatten the board into a single image when the user needs to edit its components.
+
+## 9.4 Realm and environment design
+
+Support concept boards for environments and realms, including:
+
+- Overall composition.
+- Scale cues.
+- Architecture and geography.
+- Atmospheric conditions.
+- Light sources.
+- Material language.
+- Color palette.
+- Distinctive environmental phenomena.
+- Relationship to the realm's documented properties.
+
+The objective is to connect the world's actual lore to its visual presentation.
+
+## 9.5 Two-dimensional and three-dimensional design
+
+Provide separate, clearly named design modes:
+
+**2D Concept Design**
+
+- Character sheets.
+- Silhouette exploration.
+- Front, side, and back views where needed.
+- Color and material callouts.
+- Effects sheets.
+- Composition and pose references.
+
+**3D Design Briefs**
+
+- Subject dimensions when known.
+- Proportions and silhouette.
+- Front, side, and rear reference images.
+- Camera and perspective notes.
+- Material and shader descriptions.
+- Lighting setup.
+- Geometry and shape breakdown.
+- Rigging or articulation requirements when relevant.
+- Scene composition.
+- Render direction.
+- Effects and particle-system specifications.
+
+These features must produce useful, editable design briefs and reference layouts.
+
+Do not pretend that a complete editable 3D model, rig, mesh, or rendered scene exists when the application has only generated a textual brief. If a genuine 3D viewport or asset-generation workflow is implemented, expose it as a separate capability and verify that it works.
+
+## 9.6 Ability and effects design
+
+Support visual sequences for abilities and combat effects.
+
+A sequence may contain ordered stages such as:
+
+**Anticipation → Activation → Expansion → Impact → Aftermath**
+
+This is an optional authoring structure, not a universal law of action design.
+
+Each stage should support its own visual reference, motion description, camera direction, timing notes, color and lighting behavior, environmental response, and transition to the next stage.
+
+Include support for:
+
+- Energy shapes and trails.
+- Particle behavior.
+- Distortion and lighting.
+- Environmental destruction or reaction.
+- Silhouette readability.
+- Scale and impact cues.
+- Multi-stage transformations.
+- Camera framing and motion.
+- Distinctive visual signatures.
+
+The purpose is to make powers visually identifiable and satisfying, not to produce generic glowing explosions for every ability.
+
+# 10. IDEA CONSTELLATION
+
+Create a flexible creative brainstorming workspace.
+
+Ideas should be easy to create quickly without completing a long form.
+
+Each idea can contain:
+
+- Title or provisional name.
+- Core concept.
+- Short explanation.
+- Related records.
+- Inspiration or research links.
+- Visual references.
+- Development notes.
+- Current status.
+- Revision history.
+
+Provide two ways to browse ideas:
+
+1. A fast, searchable list.
+2. An interactive relationship canvas for discovering connections.
+
+Allow the Lorekeeper to connect ideas to existing characters, abilities, realms, factions, or visual designs.
+
+Support branching into alternative concepts without overwriting the original idea. Allow merging or retiring ideas deliberately.
+
+The system should make speculative creativity easy while keeping unapproved ideas separate from established lore.
+
+# 11. RESEARCH DESK
+
+Research is part of the Lorekeeper's normal workflow, not an optional decorative section.
+
+Create structured research records containing:
+
+- Research question.
+- Source title and author or publisher when known.
+- Source URL when available.
+- Publication date when known.
+- Date accessed.
+- Relevant excerpt or notes.
+- Claim being investigated.
+- Findings.
+- Confidence and limitations.
+- Related lore records.
+- Follow-up questions.
+
+Allow multiple sources to support, qualify, or contradict the same claim.
+
+Do not fabricate URLs, quotations, publication dates, or research findings. Do not represent a model-generated hypothesis as an externally verified fact.
+
+The application should organize research the Lorekeeper actually performs. It does not need a separate built-in browsing agent unless that functionality is explicitly and genuinely implemented.
+
+# 12. LORE LIBRARY
+
+Create a structured library for durable lore documentation.
+
+Documents should support headings, paragraphs, lists, tables, inline references, images where appropriate, and links to related records.
+
+Provide:
+
+- Fast full-text search.
+- Filtering by category and status.
+- Tags and collections.
+- Recent documents.
+- Linked records.
+- Document revision history.
+- Import and export.
+- Clear identification of draft versus established material.
+
+A lore document should remain readable as a standalone export. Avoid proprietary structures that make the user's work inaccessible outside the application.
+
+## 12.1 Provenance and revisions
+
+Where practical, each record should track:
+
+- Creation and last-modified timestamps.
+- Current status.
+- Revision history.
+- Linked source records.
+- Explicitly recorded status changes.
+
+Do not create fake audit histories for records that have no history.
+
+Changing a record from proposed to established should be an explicit user action. The application may warn about connected unresolved conflicts, but it must not silently make canon decisions.
+
+# 13. SHARED DATA MODEL
+
+Implement a consistent data model rather than separate incompatible storage structures for each screen.
+
+At minimum, define these record types:
+
+- Project.
+- LoreDocument.
+- Entity.
+- LocationOrRealm.
+- Faction.
+- Ability.
+- PowerSystem.
+- PowerInteraction.
+- VisualReference.
+- DesignBoard.
+- DesignBoardItem.
+- EffectsSequence.
+- Idea.
+- ResearchRecord.
+- Relationship.
+- Tag.
+- RevisionRecord.
+
+Some concepts may share a base record structure with type-specific fields. Use explicit schemas and stable IDs.
+
+A relationship should record its source record, target record, relationship type, and any relevant notes.
+
+Validate imported data. Handle missing optional fields safely. Avoid relying on display names as unique identifiers.
+
+Do not add dozens of empty, mandatory fields merely to make the data model look sophisticated.
+
+# 14. PERSISTENCE, IMPORT, AND EXPORT
+
+The application must preserve real user-created work.
+
+Use reliable persistence supported by the actual Google AI Studio application environment. For a primarily local creative workspace, use IndexedDB or an equally suitable persistent store for structured records and image metadata. Store binary assets through an appropriate mechanism rather than filling localStorage with large base64 images.
+
+Do not claim that data is cloud-synchronized unless a real synchronization mechanism exists.
+
+Implement:
+
+- Automatic persistence after meaningful edits.
+- Visible save status.
+- Graceful handling of storage failures.
+- JSON export and import for structured workspace data.
+- Markdown export for lore documents.
+- Preservation of record IDs and relationships during round trips.
+- A clear confirmation before destructive bulk actions.
+- A recovery-friendly approach to import failures.
+
+Image files should be included in exports when feasible, or explicitly listed as external dependencies when they cannot be embedded. Do not silently discard media.
+
+Test that exported records can be imported again without losing their important relationships or content.
+
+# 15. SEARCH AND NAVIGATION MECHANICS
+
+Implement global search across document titles, content, entity names, abilities, ideas, research records, and tags.
+
+Results should identify their record type and provide enough context to distinguish similar names.
+
+Selecting a result should open the relevant record in its appropriate workspace.
+
+Support filters for status, type, tag, and project where useful.
+
+Search should work against the actual saved data. Do not create a fake search box that merely filters a hardcoded example list.
+
+Provide useful empty states, loading states, and error feedback. Search failure must not destroy the current workspace.
+
+# 16. INTERACTION CONTRACTS
+
+Every visible control must perform its advertised action.
+
+- Create opens a working creation flow.
+- Save produces a real persisted change.
+- Delete requires an appropriate confirmation and removes the intended record.
+- Cancel closes the relevant operation without accidentally committing it.
+- Relationship controls update the shared data model.
+- Reference uploads produce actual accessible records.
+- Filters change the displayed records.
+- Export generates a real downloadable or otherwise accessible artifact.
+- Import validates and loads the selected data.
+- Board items retain their positions after saving and reopening.
+
+Do not implement buttons that only change their own appearance.
+
+Use clear focus states, keyboard-accessible controls, meaningful disabled states, and appropriate success or error messages.
+
+Prevent accidental data loss when navigating away from unfinished edits.
+
+# 17. APPLICATION STATE AND ERROR HANDLING
+
+Use a consistent state model for navigation, selected records, open panels, dialogs, uploads, editing, and persistence.
+
+Keep transient interface state separate from durable lore data.
+
+Implement explicit states for:
+
+- Initial loading.
+- Empty workspace.
+- Saving.
+- Save failure.
+- Upload progress.
+- Upload failure.
+- Import validation failure.
+- Export failure.
+- Missing record.
+- Missing image.
+- Unsaved changes.
+- Successful completion.
+
+A failed operation must not display a success message.
+
+A missing feature must not be disguised as a working one.
+
+Do not build a fake terminal, simulated AI connection, simulated cloud synchronization, or mock 3D editor merely to make the application appear more capable.
+
+# 18. RESPONSIVE BEHAVIOR AND ACCESSIBILITY
+
+The interface must remain usable across desktop, tablet, and mobile widths.
+
+Implement:
+
+- Collapsible navigation.
+- Responsive inspector panels.
+- Touch-accessible controls.
+- Responsive image and document layouts.
+- Keyboard navigation.
+- Visible focus indicators.
+- Accessible names for controls.
+- Appropriate contrast.
+- Reduced-motion support.
+- Clear error messages.
+- Prevention of unintended horizontal overflow.
+
+Visual canvases may need specialized mobile interactions. Preserve their essential capabilities rather than simply shrinking them.
+
+# 19. IMPLEMENTATION DISCIPLINE
+
+Inspect the actual Google AI Studio Build environment and current project before making architectural assumptions.
+
+Use the framework and capabilities genuinely available in the environment. Choose the simplest robust implementation compatible with the requirements.
+
+Do not invent package APIs, browser capabilities, server functionality, image-generation integrations, or model-access mechanisms.
+
+Do not add an unnecessary backend merely to make the application sound sophisticated. Do not force the application to be frontend-only if a backend is genuinely required for the selected persistence strategy.
+
+Use shared components and explicit schemas. Separate data operations from presentation. Keep the implementation understandable enough to repair and extend.
+
+Build complete vertical workflows rather than many disconnected screens. A feature is not complete merely because its page exists.
+
+If the existing project contains useful work, inspect and preserve it where compatible. If its architecture prevents the required behavior, correct the architecture rather than layering cosmetic patches over it.
+
+# 20. EXECUTION ORDER
+
+Execute the build in this order. These are implementation dependencies, not permission gates.
+
+**Phase A: Application foundation**
+
+- Establish the visual tokens and shell.
+- Implement navigation and workspace state.
+- Establish shared record schemas and persistent storage.
+- Implement global search and the basic document editor.
+
+**Phase B: Core lore workflows**
+
+- Implement World Atlas and entity records.
+- Implement Power Forge and connected ability records.
+- Implement the Idea Constellation and Lore Library.
+- Connect the records through shared relationships.
+
+**Phase C: Visual creation**
+
+- Implement reference upload and gallery.
+- Implement image-analysis notes.
+- Implement character and realm design boards.
+- Implement 2D/3D design briefs.
+- Implement effects-sequence boards.
+
+**Phase D: Research and integrity**
+
+- Implement Research Desk and source relationships.
+- Implement canon-status distinctions.
+- Implement revision history and conflict visibility where supported.
+- Implement robust import/export and recovery behavior.
+
+**Phase E: Completion**
+
+- Test persistence and round trips.
+- Test navigation and cross-record relationships.
+- Test image upload and media handling.
+- Test responsive layouts and accessibility.
+- Test error and empty states.
+- Fix discovered failures.
+- Confirm that the application runs and builds successfully in the actual environment.
+
+Do not stop after Phase A and report the application as complete.
+
+# 21. ACCEPTANCE CONDITIONS
+
+The application is not complete until the following conditions are met.
+
+## Creative workflow
+
+- [ ] The Observatory opens into a useful working environment.
+- [ ] The Lorekeeper can create and edit durable lore records.
+- [ ] Entities, locations, abilities, and ideas can be linked.
+- [ ] The World Atlas displays and navigates actual saved relationships.
+- [ ] Power mechanics can be documented as structured sequences.
+- [ ] Visual references can be uploaded, viewed, organized, and linked.
+- [ ] Design boards preserve their layout.
+- [ ] Effects sequences support ordered visual stages.
+- [ ] Research records preserve source information.
+- [ ] Canon status distinguishes established material from proposals and inferences.
+
+## Data integrity
+
+- [ ] Work survives application reload.
+- [ ] Search operates on saved records.
+- [ ] Exported data can be re-imported.
+- [x] Relationships survive export/import.
+- [ ] Failed imports do not corrupt existing work.
+- [ ] Destructive operations have appropriate safeguards.
+- [ ] The application does not invent lore to populate empty screens.
+
+## Interface
+
+- [ ] The named visual palette is applied consistently.
+- [ ] Navigation, inspector, and central workspace behave coherently.
+- [ ] Every visible control works.
+- [ ] Loading, empty, success, and error states are implemented.
+- [ ] The interface works at mobile and desktop sizes.
+- [ ] The application does not present fake AI, cloud, or 3D capabilities.
+
+## Build
+
+- [ ] The actual project has been inspected.
+- [ ] The application runs in the available environment.
+- [ ] The production build passes if the environment provides a production build.
+- [ ] Known failures are fixed or explicitly identified.
+- [ ] Completion claims correspond to observed behavior.
+
+# 22. FINAL OPERATING DIRECTIVE
+
+Do not respond with a plan for an application that has not been built.
+
+Inspect the existing project and determine what is actually present. Implement the required architecture and workflows. Run the application. Exercise the important interactions. Fix failures. Confirm the result.
+
+Do not substitute a polished landing page for the workbench.
+
+Do not substitute lore cards for a connected worldbuilding system.
+
+Do not substitute image thumbnails for a visual-design workspace.
+
+Do not substitute a list of powers for a mechanics editor.
+
+Do not substitute an AI chatbot for the Lorekeeper's actual creative role.
+
+Do not substitute claims of functionality for working features.
+
+The final product must serve the Lorekeeper's complete creative responsibilities: **worldbuilding, lore, powerscaling, research, brainstorming, image analysis, 2D/3D design, visual effects, and the distinctive game-like identity of the Ur-Verse.**
+
+Build the environment that this work actually requires.

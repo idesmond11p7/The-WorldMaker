@@ -1,0 +1,6 @@
+{
+  "name": "Lorekeeper / Worldmaker Studio",
+  "description": "Creative working environment, living ontological codex, power systems laboratory, and worldbuilding archive for the ForeverWorlds and Ur-Worlds cosmology.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
